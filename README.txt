@@ -321,4 +321,4 @@
 
    ==================================================================
 
-   github.com/FiTH-g1gGLe/Windows-11-Script
+   github.com/FiTH-g1gGLe/GamingTweaks

@@ -1,0 +1,20 @@
+name: Feature or tweak suggestion
+description: Suggest a new tweak or feature
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What should GamingTweaks do?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it help gaming?
+      description: Benchmarks, sources or your own results are great.
+  - type: textarea
+    id: risk
+    attributes:
+      label: What could it break?
+      description: Every tweak must keep the Store, Xbox, sign-in and anti-cheat working, and be reversible.

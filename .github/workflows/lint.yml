@@ -1,0 +1,48 @@
+# Checks GamingTweaks.ps1 on every change: it must parse in Windows PowerShell 5.1,
+# pass PSScriptAnalyzer, and stay plain ASCII (5.1 misreads other characters).
+name: Code check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse with Windows PowerShell 5.1
+        shell: powershell
+        run: |
+          $errors = $null
+          [void][System.Management.Automation.Language.Parser]::ParseFile("$PWD\GamingTweaks.ps1", [ref]$null, [ref]$errors)
+          if ($errors) { $errors | ForEach-Object { Write-Host "::error line=$($_.Extent.StartLineNumber)::$($_.Message)" }; exit 1 }
+          Write-Host "PowerShell $($PSVersionTable.PSVersion): no parse errors"
+
+      - name: Plain ASCII only
+        shell: powershell
+        run: |
+          $bytes = [IO.File]::ReadAllBytes("$PWD\GamingTweaks.ps1")
+          $bad = 0; foreach ($b in $bytes) { if ($b -gt 127) { $bad++ } }
+          if ($bad) { Write-Host "::error::GamingTweaks.ps1 contains $bad non-ASCII bytes"; exit 1 }
+          Write-Host 'ASCII only: OK'
+
+      - name: PSScriptAnalyzer
+        shell: powershell
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
+          $exclude = 'PSAvoidUsingWriteHost', 'PSUseShouldProcessForStateChangingFunctions', 'PSUseApprovedVerbs',
+                     'PSAvoidGlobalFunctions', 'PSUseSingularNouns', 'PSAvoidUsingPositionalParameters',
+                     'PSAvoidUsingEmptyCatchBlock', 'PSAvoidOverwritingBuiltInCmdlets', 'PSReviewUnusedParameter',
+                     'PSUseDeclaredVarsMoreThanAssignments'
+          $r = Invoke-ScriptAnalyzer -Path .\GamingTweaks.ps1 -Severity Error, Warning -ExcludeRule $exclude
+          $r | ForEach-Object { Write-Host "::warning line=$($_.Line)::$($_.RuleName): $($_.Message)" }
+          if ($r) { exit 1 }
+          Write-Host 'PSScriptAnalyzer: no findings'
