@@ -2,20 +2,36 @@
 
 # 🎮 GamingTweaks
 
-**One menu. Every change backed up. One key to undo it all.**
+**Free Windows 10/11 gaming optimiser with a proper window, full backup and one-click revert.**
 
-A Windows 10/11 gaming optimisation script that adapts to your PC, keeps the Microsoft Store,
-Xbox and anti-cheat working, and can put everything back exactly as it was.
+More FPS consistency, lower latency and a quieter Windows — without breaking the Microsoft Store,
+Xbox / Game Pass or anti-cheat.
 
-`v1.8.0` · PowerShell · Windows 10 / 11 · Window or text menu
+[![Latest release](https://img.shields.io/github/v/release/FiTH-g1gGLe/Windows-11-Script?label=download&style=for-the-badge&color=2563eb)](https://github.com/FiTH-g1gGLe/Windows-11-Script/releases/latest)
+![Windows 10/11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=for-the-badge&logo=windows)
+![PowerShell](https://img.shields.io/badge/PowerShell-5.1-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
+
+<img src="docs/screenshot.png" alt="GamingTweaks window" width="820"/>
 
 </div>
+
+### Why GamingTweaks?
+
+| | |
+|---|---|
+| 🛡️ **Undo anything** | Every setting is saved before it changes — **Revert everything** puts it all back |
+| 🧠 **Adapts to your PC** | Detects laptop / desktop, AMD X3D, NVIDIA, RAM, Realtek audio, disabled GPUs |
+| 🎯 **Gaming first** | Power plan, timer resolution, game priority, network latency, NVIDIA profile import |
+| 🧹 **Lean Windows** | Telemetry, ads, Copilot / Recall, bloat apps and ~65 services off — aim for 75-90 running services |
+| ✅ **Nothing broken** | Store, Xbox, Game Pass, sign-in, notifications and anti-cheat keep working |
+| 📊 **See the difference** | Before / after services, processes and RAM, built in |
+| 🚀 **Extras** | Startup apps manager, app installer (browsers, launchers, Discord), safe cleanup |
 
 ---
 
 ## ⚡ Quick start
 
-1. Click the green **Code** button above, then **Download ZIP**, and extract it
+1. Download **GamingTweaks.zip** from the [latest release](https://github.com/FiTH-g1gGLe/Windows-11-Script/releases/latest) (or **Code → Download ZIP**) and extract it
 2. Double-click **`Run-GamingTweaks.cmd`** and accept the admin prompt — the GamingTweaks window opens
 3. Check the **Tweaks**, **Your choices** and **Extras** tabs (the recommended options are already ticked)
 4. Click **Apply selected**, then reboot
