@@ -1,0 +1,65 @@
+# Publishes a GitHub Release with a ready-to-download zip whenever the
+# version number in GamingTweaks.ps1 changes on main.
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths: ['GamingTweaks.ps1', '.github/workflows/release.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version
+        id: ver
+        run: |
+          v=$(grep -m1 -oP "^\\\$Version = '\K[0-9.]+" GamingTweaks.ps1)
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "Version: $v"
+
+      - name: Skip if this version is already released
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "v${{ steps.ver.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build zip and release notes
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          zip -j GamingTweaks.zip GamingTweaks.ps1 Run-GamingTweaks.cmd Run-GamingTweaks-Console.cmd README.txt
+          # Release notes = this version's section of CHANGELOG.md
+          awk -v v="## v${{ steps.ver.outputs.version }}" '
+            index($0, v) == 1 { on = 1; next }
+            on && /^## v/ { exit }
+            on { print }
+          ' CHANGELOG.md > notes.md
+          {
+            echo
+            echo "### How to use"
+            echo "1. Download **GamingTweaks.zip** below and extract it"
+            echo "2. Double-click **Run-GamingTweaks.cmd** and accept the admin prompt"
+            echo "3. Check the tabs, click **Apply selected**, reboot"
+            echo
+            echo "Everything is backed up first - **Revert everything** undoes it all."
+          } >> notes.md
+
+      - name: Publish release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ steps.ver.outputs.version }}" GamingTweaks.zip \
+            --title "GamingTweaks v${{ steps.ver.outputs.version }}" \
+            --notes-file notes.md --latest
