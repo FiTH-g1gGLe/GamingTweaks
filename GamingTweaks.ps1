@@ -12,7 +12,7 @@
     script touches is recorded in C:\GamingTweaks\backup.json BEFORE it is changed.
     Menu option [R] puts all of it back.
 
-    Source: https://github.com/FiTH-g1gGLe/Windows-11-Script
+    Source: https://github.com/FiTH-g1gGLe/GamingTweaks
 
     Run:  double-click Run-GamingTweaks.cmd          (window / GUI)
           double-click Run-GamingTweaks-Console.cmd  (text menu)

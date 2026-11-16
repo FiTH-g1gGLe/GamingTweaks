@@ -5,7 +5,7 @@ name: Release
 on:
   push:
     branches: [main]
-    paths: ['GamingTweaks.ps1', '.github/workflows/release.yml']
+    paths: ['GamingTweaks.ps1', 'CHANGELOG.md', 'README.txt', '*.cmd', '.github/workflows/release.yml']
   workflow_dispatch:
 
 permissions:
@@ -24,22 +24,13 @@ jobs:
           echo "version=$v" >> "$GITHUB_OUTPUT"
           echo "Version: $v"
 
-      - name: Skip if this version is already released
-        id: check
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh release view "v${{ steps.ver.outputs.version }}" >/dev/null 2>&1; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Build zip and release notes
-        if: steps.check.outputs.exists == 'false'
+        id: build
         run: |
           zip -j GamingTweaks.zip GamingTweaks.ps1 Run-GamingTweaks.cmd Run-GamingTweaks-Console.cmd README.txt
-          # Release notes = this version's section of CHANGELOG.md
+          sha=$(sha256sum GamingTweaks.zip | cut -d' ' -f1)
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          # Release notes = this version's section of CHANGELOG.md + how to use + checksum
           awk -v v="## v${{ steps.ver.outputs.version }}" '
             index($0, v) == 1 { on = 1; next }
             on && /^## v/ { exit }
@@ -47,19 +38,34 @@ jobs:
           ' CHANGELOG.md > notes.md
           {
             echo
+            echo "---"
+            echo
             echo "### How to use"
             echo "1. Download **GamingTweaks.zip** below and extract it"
             echo "2. Double-click **Run-GamingTweaks.cmd** and accept the admin prompt"
             echo "3. Check the tabs, click **Apply selected**, reboot"
             echo
             echo "Everything is backed up first - **Revert everything** undoes it all."
+            echo
+            echo "### Verify your download"
+            echo "Built automatically by GitHub Actions from commit \`${GITHUB_SHA::7}\`."
+            echo
+            echo "| File | SHA-256 |"
+            echo "|---|---|"
+            echo "| GamingTweaks.zip | \`$sha\` |"
+            echo
+            echo "In PowerShell: \`Get-FileHash .\\GamingTweaks.zip\` - the hash should match."
           } >> notes.md
+          cat notes.md
 
-      - name: Publish release
-        if: steps.check.outputs.exists == 'false'
+      - name: Publish or update release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "v${{ steps.ver.outputs.version }}" GamingTweaks.zip \
-            --title "GamingTweaks v${{ steps.ver.outputs.version }}" \
-            --notes-file notes.md --latest
+          tag="v${{ steps.ver.outputs.version }}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release upload "$tag" GamingTweaks.zip --clobber
+            gh release edit "$tag" --title "GamingTweaks $tag" --notes-file notes.md
+          else
+            gh release create "$tag" GamingTweaks.zip --title "GamingTweaks $tag" --notes-file notes.md --latest
+          fi

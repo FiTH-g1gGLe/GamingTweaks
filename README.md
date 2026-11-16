@@ -1,125 +1,211 @@
 <div align="center">
 
-# 🎮 GamingTweaks
+<img src="docs/banner.svg" alt="GamingTweaks — faster, quieter Windows for gaming, every change fully reversible" width="100%"/>
 
-**Free Windows 10/11 gaming optimiser with a proper window, full backup and one-click revert.**
+<br/>
 
-More FPS consistency, lower latency and a quieter Windows — without breaking the Microsoft Store,
-Xbox / Game Pass or anti-cheat.
+[![Latest release](https://img.shields.io/github/v/release/FiTH-g1gGLe/GamingTweaks?style=flat-square&color=2563eb&label=release)](https://github.com/FiTH-g1gGLe/GamingTweaks/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/FiTH-g1gGLe/GamingTweaks/total?style=flat-square&color=16a34a&label=downloads)](https://github.com/FiTH-g1gGLe/GamingTweaks/releases)
+[![Code check](https://img.shields.io/github/actions/workflow/status/FiTH-g1gGLe/GamingTweaks/lint.yml?branch=main&style=flat-square&label=code%20check)](https://github.com/FiTH-g1gGLe/GamingTweaks/actions/workflows/lint.yml)
+[![License: MIT](https://img.shields.io/github/license/FiTH-g1gGLe/GamingTweaks?style=flat-square&color=a855f7)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/FiTH-g1gGLe/GamingTweaks?style=flat-square&color=f59e0b)](https://github.com/FiTH-g1gGLe/GamingTweaks/commits/main)
+<br/>
+![Windows 10 | 11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=flat-square&logo=windows&logoColor=white)
+![PowerShell 5.1](https://img.shields.io/badge/PowerShell-5.1-5391FE?style=flat-square&logo=powershell&logoColor=white)
+![No install](https://img.shields.io/badge/install-not%20needed-334155?style=flat-square)
+![No telemetry](https://img.shields.io/badge/telemetry-none-334155?style=flat-square)
+[![Stars](https://img.shields.io/github/stars/FiTH-g1gGLe/GamingTweaks?style=flat-square&color=eab308)](https://github.com/FiTH-g1gGLe/GamingTweaks/stargazers)
 
-[![Latest release](https://img.shields.io/github/v/release/FiTH-g1gGLe/Windows-11-Script?label=download&style=for-the-badge&color=2563eb)](https://github.com/FiTH-g1gGLe/Windows-11-Script/releases/latest)
-![Windows 10/11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=for-the-badge&logo=windows)
-![PowerShell](https://img.shields.io/badge/PowerShell-5.1-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
+### Tune Windows for gaming in one click — and undo all of it in one click.
 
-<img src="docs/screenshot.png" alt="GamingTweaks window" width="820"/>
+GamingTweaks cuts background noise, lowers latency and smooths out frame times, **without** breaking<br/>
+the Microsoft Store, Xbox / Game Pass or anti-cheat. Every change is backed up before it's made.
+
+<br/>
+
+<a href="https://github.com/FiTH-g1gGLe/GamingTweaks/releases/latest/download/GamingTweaks.zip"><img src="https://img.shields.io/badge/%E2%AC%87%20%20Download%20GamingTweaks-2563EB?style=for-the-badge&logoColor=white" alt="Download GamingTweaks" height="44"/></a>
+
+<sub>Free · Open source · 45 KB download · Windows 10 & 11</sub>
+
+<br/>
+
+**[Features](#-features) · [Quick start](#-quick-start) · [Why trust it](#-built-to-be-trusted) · [Compare](#-how-it-compares) · [FAQ](#-faq) · [Changelog](CHANGELOG.md)**
+
+<br/>
+
+<img src="docs/screenshot.png" alt="The GamingTweaks window" width="880"/>
 
 </div>
 
-### Why GamingTweaks?
+---
 
-| | |
-|---|---|
-| 🛡️ **Undo anything** | Every setting is saved before it changes — **Revert everything** puts it all back |
-| 🧠 **Adapts to your PC** | Detects laptop / desktop, AMD X3D, NVIDIA, RAM, Realtek audio, disabled GPUs |
-| 🎯 **Gaming first** | Power plan, timer resolution, game priority, network latency, NVIDIA profile import |
-| 🧹 **Lean Windows** | Telemetry, ads, Copilot / Recall, bloat apps and ~65 services off — aim for 75-90 running services |
-| ✅ **Nothing broken** | Store, Xbox, Game Pass, sign-in, notifications and anti-cheat keep working |
-| 📊 **See the difference** | Before / after services, processes and RAM, built in |
-| 🚀 **Extras** | Startup apps manager, app installer (browsers, launchers, Discord), safe cleanup |
+## ✨ Features
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🛡️ Undo anything
+Every registry value, service, task, power plan, network setting and NVIDIA profile is saved **before** it changes. **Revert everything** puts it all back exactly as it was.
+
+</td>
+<td width="50%" valign="top">
+
+### 🧠 Adapts to your PC
+Detects laptop or desktop, AMD X3D chips, NVIDIA cards, RAM size, Realtek audio and disabled GPUs — and only applies what fits.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### 🎯 Gaming first
+Tuned power plan, timer resolution, game CPU priority, network latency tweaks, and a one-click **NVIDIA Profile Inspector** import.
+
+</td>
+<td valign="top">
+
+### 🧹 Lean Windows
+Telemetry, ads, Copilot, Recall, bloat apps and ~65 unused services off — aim for **75–90 running services** on a clean install.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### ✅ Nothing broken
+The Microsoft Store, Xbox, Game Pass, sign-in, notifications, typing and anti-cheat all keep working. Risky tweaks are opt-in and clearly marked.
+
+</td>
+<td valign="top">
+
+### 📊 See the difference
+Built-in **before / after** report for running services, processes and RAM, plus a timer-accuracy test.
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+### 🖥️ Window or text menu
+A modern dark window with tick boxes, a live log and a progress bar — or the classic keyboard menu. Same engine, same backup.
+
+</td>
+<td valign="top">
+
+### 🚀 Handy extras
+Startup apps manager, one-click installs (browsers, game launchers, Discord, utilities), Defender game-folder exclusions and a safe cleaner.
+
+</td>
+</tr>
+</table>
 
 ---
 
 ## ⚡ Quick start
 
-1. Download **GamingTweaks.zip** from the [latest release](https://github.com/FiTH-g1gGLe/Windows-11-Script/releases/latest) (or **Code → Download ZIP**) and extract it
-2. Double-click **`Run-GamingTweaks.cmd`** and accept the admin prompt — the GamingTweaks window opens
-3. Check the **Tweaks**, **Your choices** and **Extras** tabs (the recommended options are already ticked)
-4. Click **Apply selected**, then reboot
-5. Open **Info + tools → PC info** to see before / after
+1. **[Download GamingTweaks.zip](https://github.com/FiTH-g1gGLe/GamingTweaks/releases/latest/download/GamingTweaks.zip)** and extract it
+2. Double-click **`Run-GamingTweaks.cmd`** and accept the admin prompt
+3. Look through the tabs — the recommended options are already ticked — and click **Apply selected**
+4. Reboot, then open **Info + tools → PC info** to see your before / after
 
-Changed your mind? Click **Revert everything**.
+> [!TIP]
+> Changed your mind? Click **Revert everything** — or run `Run-GamingTweaks-Console.cmd` and press **`R`**.
 
-### Prefer the text menu?
-Double-click **`Run-GamingTweaks-Console.cmd`** (or run `Run-GamingTweaks.cmd -Console`) and press **`1`**,
-then **`I`** after rebooting, or **`R`** to revert. Both use the same backup, so you can apply in one
-and revert in the other.
+<details>
+<summary><b>Prefer the text menu?</b></summary>
+
+<br/>
+
+Double-click **`Run-GamingTweaks-Console.cmd`** (or run `Run-GamingTweaks.cmd -Console`) and press **`1`**, then **`I`** after rebooting, or **`R`** to revert. The window and the text menu share the same backup, so you can apply in one and revert in the other.
 
 | Window | Text menu |
 |---|---|
-| Tick boxes for every section and question, set everything up front | Asks yes / no as it goes |
+| Tick boxes for every section and question, set up front | Asks yes / no as it goes |
 | Live colour log, progress bar, one click to apply | Same log in the console |
-| Recommended / Untick all / Restore point / Revert buttons | Keys `1`-`9`, `S` `G` `N` `A`-`F` `M` `T` `P` `I` `R` |
+| Recommended · Untick all · Restore point · Revert buttons | Keys `1`–`9`, `S` `G` `N` `X` `A`–`F` `M` `T` `P` `U` `W` `I` `R` |
 
-> Backup and logs are kept in `C:\GamingTweaks`.
-
----
-
-## 🛡️ The safety net
-
-- A **System Restore point** is made first
-- **Every** registry value, service, scheduled task, power plan, network adapter setting, DNS server
-  and NVIDIA profile is saved to `C:\GamingTweaks\backup.json` **before** it is changed
-- **`R`** restores all of it
-- Every run is logged to `C:\GamingTweaks\log-<date>.txt`
-
-*Not covered by `R`: removed bloat apps (reinstall them from the Store) and deleted junk files. Removed Windows components and optional features are put back.*
+</details>
 
 ---
 
-## 🧠 It adapts to your PC
+## 🔒 Built to be trusted
 
-| Detected | What changes |
+| | |
 |---|---|
-| **Laptop** | Battery settings untouched, hibernate left on |
-| **Desktop** | Full performance power settings |
-| **AMD 7900X3D / 7950X3D / 9900X3D / 9950X3D** | Balanced-based plan, core parking + Game Bar kept so games stay on the V-Cache chiplet |
-| **NVIDIA GPU** | Telemetry off + driver profile import offered |
-| **16 GB+ RAM** | Memory compression off |
-| **Realtek audio** | Audio power saving off |
-| **Windows 11** | Global timer resolution enabled |
+| 📖 **Readable, not compiled** | One plain PowerShell script — no `.exe`, no installer, no hidden code. Read every line before you run it. |
+| 💾 **Backup before every change** | Original values go to `C:\GamingTweaks\backup.json` first; a System Restore point is made too. |
+| ↩️ **Full revert** | One button / key restores every recorded setting, service, task, power plan, adapter setting and NVIDIA profile. |
+| 📝 **Everything logged** | Each run writes a full log to `C:\GamingTweaks`. |
+| 🚫 **No telemetry** | GamingTweaks never sends anything anywhere. |
+| 🌐 **Only official downloads** | The only downloads are ones you tick: NVIDIA Profile Inspector from [its official GitHub](https://github.com/Orbmu2k/nvidiaProfileInspector), and apps from their publishers via Microsoft's `winget`. |
+| 🤖 **Checked on every change** | Every update is automatically parsed and linted with PSScriptAnalyzer on Windows PowerShell 5.1. |
+| 🔐 **Verifiable releases** | Each release is built by GitHub Actions from the code you see here, with a SHA-256 checksum in the notes. |
+
+---
+
+## ⚖️ How it compares
+
+|  | **GamingTweaks** | Typical tweak scripts | Windows playbooks |
+|---|:-:|:-:|:-:|
+| Undo every change with one click | ✅ | ❌ | ⚠️ partial |
+| Microsoft Store, Xbox & Game Pass keep working | ✅ | ⚠️ often broken | ⚠️ often broken |
+| Anti-cheat friendly by default | ✅ | ⚠️ | ⚠️ |
+| Hardware-aware (X3D, NVIDIA, laptop, Realtek) | ✅ | ❌ | ⚠️ |
+| Window **and** text menu | ✅ | ❌ | ✅ |
+| Works on your current install — no reinstall | ✅ | ✅ | ⚠️ fresh install advised |
+| Before / after numbers built in | ✅ | ❌ | ❌ |
+| Explains what it **doesn't** do, and why | ✅ | ❌ | ⚠️ |
 
 ---
 
 ## 📋 What it does
 
-The window and the text menu run exactly the same sections (keys shown for the text menu):
+The window and the text menu run exactly the same sections (text-menu keys shown):
 
 | Key | Section | What it does |
 |:-:|---|---|
-| **1** | **Apply everything recommended** | Restore point → 2-9, S, G, N, X → asks about bloat apps and the optional trade-offs |
-| **2** | Power plan | Own Ultimate-based plan, aggressive turbo boost, max-performance EPP, all cores unparked, no PCIe/USB/disk power saving |
-| **3** | Gaming & input | Game Mode, no Game DVR, foreground CPU boost, MMCSS games profile, raw mouse input, no Sticky Keys pop-ups, no startup delay, Realtek audio fix |
+| **1** | **Apply everything recommended** | Restore point → 2–9, S, G, N, X → asks about bloat apps and the optional trade-offs |
+| **2** | Power plan | Own Ultimate-based plan, aggressive turbo boost, max-performance EPP, all cores unparked, no PCIe / USB / disk power saving |
+| **3** | Gaming & input | Game Mode, no Game DVR, foreground CPU boost, MMCSS games profile, raw mouse input, fast key repeat, no Sticky Keys pop-ups, no startup delay, Realtek audio fix |
 | **4** | GPU | Hardware-accelerated GPU scheduling, windowed-game optimisations, MSI mode, NVIDIA telemetry off |
-| **5** | Background & privacy | Telemetry + ~20 telemetry tasks, ads, Bing search, Copilot, Recall, Widgets, background apps, settings sync and tracking off; optional Edge ad blocking |
+| **5** | Background & privacy | Telemetry, ~20 telemetry tasks and 10 trace loggers, ads, Bing search, Copilot, Recall, Click to Do, Widgets, background apps, settings sync and tracking off; optional Edge ad blocking |
 | **6** | Windows Update off | Paused 10 years, driver updates blocked, version locked — **the Store keeps working** |
 | **7** | Network | Throttling and Nagle off, adapter power saving / EEE / coalescing off, NIC MSI mode, DSCP 46 game traffic priority, optional lowest-ping mode |
 | **8** | Timer resolution | 0.5 ms or 1.0 ms at every boot |
 | **9** | Cleanup | Temp, update + Delivery Optimization caches, crash dumps, Discord cache; asks about shader caches, Recycle Bin and WinSxS; shows space freed |
-| **S** | Services | ~40 unused services off; asks about printing, Bluetooth, file sharing and search indexing; optional **aggressive mode** (~25 more set to on-demand or off) |
-| **G** | Game priority | Above Normal CPU priority for Apex and 9 other games, MMCSS IO latency cap off |
+| **S** | Services | ~40 unused services off; asks about printing, Bluetooth, file sharing and search indexing; optional **aggressive mode** (~25 more) |
+| **G** | Game priority | Above Normal CPU priority for Apex, CS2, Valorant, Fortnite, CoD, R6, Overwatch, PUBG, Rocket League, Marvel Rivals |
 | **N** | NVIDIA profile | Downloads NVIDIA Profile Inspector, backs up your profile, imports 12 tuned settings |
-| **X** | Defender: skip game folders | Defender stops scanning your Steam libraries, Epic / Riot / Xbox game folders and GPU shader caches — faster installs, updates and loading, Defender stays on for everything else. Skipped if Defender is off |
+| **X** | Defender: skip game folders | No scanning of Steam libraries, Epic / Riot / Xbox game folders and shader caches — Defender stays on for everything else |
 
-### Extras — never applied without asking
+<details>
+<summary><b>⚙️ Extras — never applied without asking</b></summary>
+
+<br/>
 
 | Key | Option | Notes |
 |:-:|---|---|
-| **A** | Remove bloat apps | Also removes Widgets, old Mail/Calendar, Math Input Panel, Steps Recorder, IE mode, PowerShell 2.0 and the XPS printer. Keeps Store, Xbox, Gaming Services, Photos, Calculator, Notepad, Paint, Terminal, Snipping Tool, Camera |
+| **A** | Remove bloat apps | Also Widgets, old Mail/Calendar, Math Input Panel, Steps Recorder, IE mode, PowerShell 2.0, XPS printer. Keeps Store, Xbox, Gaming Services, Photos, Calculator, Notepad, Paint, Terminal, Snipping Tool, Camera |
 | **B** | DNS servers | Cloudflare, Google, Quad9 or automatic |
-| **C** | Core Isolation off | VBS / Memory Integrity off — often +5-10% FPS in CPU-heavy games |
+| **C** | Core Isolation off | VBS / Memory Integrity off — often +5–10% FPS in CPU-heavy games |
 | **D** | UAC prompts off | "Never notify" — Store apps keep working |
 | **E** | Defender off | Needs Tamper Protection off first; the script opens the right page |
 | **F** | Spectre / Meltdown off | Older CPUs only |
 | **M** | MPO off | Only if you get flicker or stutter in borderless games |
 | **T** | Timer test | Measures how accurately Windows wakes up |
 | **P** | Restore point | Make one any time |
-| **U** | Startup apps | Turn apps on/off at startup (same as Task Manager) or delete the entry — backed up, Revert restores it |
-| **W** | Install apps | Silent installs straight from the publisher via winget (also an *Install apps* tab in the window):<br>**Browsers** Chrome, Firefox (UK English), Opera GX · **Game launchers** Steam, Epic, EA app, Ubisoft Connect, Battle.net, GOG GALAXY · **Chat** Discord · **Utilities** WinRAR, Notepad++, Fan Control, EarTrumpet · **Classic Windows** Windows Photo Viewer, classic Volume Mixer (Revert removes these two) |
-| **I** | PC info | Hardware, anti-cheat, VBS, power plan, HAGS, **before/after** services, processes and RAM, startup apps |
+| **U** | Startup apps | Turn apps on / off at startup (same as Task Manager) or delete the entry — backed up, Revert restores it |
+| **W** | Install apps | Silent installs from the publisher via winget: **Browsers** Chrome, Firefox, Opera GX · **Launchers** Steam, Epic, EA app, Ubisoft Connect, Battle.net, GOG GALAXY · **Chat** Discord · **Utilities** WinRAR, Notepad++, Fan Control, EarTrumpet · **Classic Windows** Photo Viewer, classic Volume Mixer |
+| **I** | PC info | Hardware, anti-cheat, VBS, power plan, HAGS, **before / after** numbers, startup apps |
 | **R** | **Revert everything** | Puts every recorded setting back |
+
+</details>
 
 <details>
 <summary><b>🟢 NVIDIA profile settings (option N)</b></summary>
+
+<br/>
 
 | Setting | Value |
 |---|---|
@@ -134,34 +220,46 @@ The window and the text menu run exactly the same sections (keys shown for the t
 | V-Sync | On for G-Sync users, otherwise Off |
 
 **Not touched:** ray tracing, anisotropic filtering, anti-aliasing, Resizable BAR, G-Sync itself.
-Profile Inspector is downloaded from its [official GitHub](https://github.com/Orbmu2k/nvidiaProfileInspector).
 
 </details>
 
 <details>
-<summary><b>🔧 Services kept on purpose (option S)</b></summary>
+<summary><b>🔧 Services — what's kept and what to expect (option S)</b></summary>
 
-**Always kept:** Windows Update and the Microsoft Store, Store downloads (BITS, Delivery Optimization),
-Xbox Live / Game Save / controllers / networking, Microsoft account sign-in, notifications, typing and
-the search box, audio, display, networking and UPnP (keeps your NAT type open).
+<br/>
 
-**Aggressive mode** (asks first) sets Connected Devices, Diagnostic Policy, Remote Access, AutoPlay,
-Storage Service, Update Orchestrator and Edge Update to start only when needed, and turns off AI Fabric,
-Geolocation, Web Threat Defense, Now Playing, Mail/Calendar sync, messaging, voice activation, WSL file
-access, contacts indexing and game recording. It also asks about Windows Hello biometrics and SysMain.
+**Always kept:** Windows Update and the Microsoft Store, Store downloads (BITS, Delivery Optimization), Xbox Live / Game Save / controllers / networking, Microsoft account sign-in, notifications, typing and the search box, audio, display, networking and UPnP (keeps your NAT type open).
 
-**Typical result on a clean Windows 11 desktop:** ~110-130 running services before, ~85-95 after
-aggressive mode, ~75-85 if you also say no to Bluetooth, printing, file sharing and search indexing.
-Motherboard / RGB / vendor apps add their own services on top - uninstalling those is the next biggest win.
-Check your own numbers with **`I`**.
+**Aggressive mode** (asks first) sets Connected Devices, Diagnostic Policy, Remote Access, AutoPlay, Storage Service, Update Orchestrator and Edge Update to start only when needed, and turns off AI Fabric, Geolocation, Web Threat Defense, Now Playing, Mail/Calendar sync, messaging, voice activation, WSL file access, contacts indexing and game recording.
+
+**Typical clean Windows 11 desktop:** ~110–130 running services before → ~85–95 with aggressive mode → ~75–85 if you also don't need Bluetooth, printing, file sharing or search indexing.
 
 </details>
 
----
+<details>
+<summary><b>🧠 Hardware detection</b></summary>
 
-## 🚫 Left out on purpose
+<br/>
 
-These appear in other tweak tools. They break things, risk your data or hardware, or don't help:
+| Detected | What changes |
+|---|---|
+| **Laptop** | Battery settings untouched, hibernate left on |
+| **Desktop** | Full performance power settings |
+| **AMD 7900X3D / 7950X3D / 9900X3D / 9950X3D** | Balanced-based plan, core parking + Game Bar kept so games stay on the V-Cache chiplet |
+| **NVIDIA GPU** | Telemetry off + driver profile import offered |
+| **GPU disabled in Device Manager** | Ignored |
+| **16 GB+ RAM** | Memory compression off |
+| **Realtek audio** | Audio power saving off |
+| **Windows 11** | Global timer resolution enabled |
+
+</details>
+
+<details>
+<summary><b>🚫 Left out on purpose — and why</b></summary>
+
+<br/>
+
+Other tweak tools include these. They break things, risk your data or hardware, or simply don't help:
 
 | Tweak | Why not |
 |---|---|
@@ -179,42 +277,72 @@ These appear in other tweak tools. They break things, risk your data or hardware
 | Deleting every `.log` / `.bak` / `.tmp` on the drive | Deletes app and game files |
 | Wiping browser data, logins or restore points | Data loss |
 
----
-
-## 🏆 Do these by hand — the biggest real gains
-
-- **BIOS:** XMP / EXPO on · Resizable BAR on · Ryzen: PBO with a negative Curve Optimizer
-- **Drivers:** clean install with NVCleanstall
-- **In game:** NVIDIA Reflex on · cap FPS a few frames under your refresh rate
-- **G-Sync:** G-Sync on, V-Sync on in the control panel, V-Sync off in game
-- **Windows:** highest refresh rate in *Settings → Display → Advanced display* · trim *Task Manager → Startup apps*
+</details>
 
 ---
 
-## ❓ Good to know
+## 🏆 Get the most out of it
 
-- **Windows Security may flag the script** because it contains the optional "Defender off" code. That part only runs if you choose it.
-- **FACEIT / Vanguard game won't start after `C`?** Press `R`, or turn Memory Integrity back on in Windows Security.
-- **Reverting NVIDIA profiles after a driver update?** Use Profile Inspector → *Restore defaults* instead.
-- **Want proof it helped?** Record a short session in [CapFrameX](https://www.capframex.com/) before and after, and compare the 1% lows.
+GamingTweaks handles Windows. These give the biggest gains on top:
+
+- **BIOS** — XMP / EXPO on · Resizable BAR on · Ryzen: PBO with a negative Curve Optimizer
+- **Drivers** — clean install with NVCleanstall
+- **In game** — NVIDIA Reflex / AMD Anti-Lag on · cap FPS a few frames under your refresh rate
+- **G-Sync** — G-Sync on, V-Sync on in the control panel, V-Sync off in game
+- **Windows** — highest refresh rate in *Settings → Display → Advanced display*
 
 ---
 
-## 📁 Files
+## ❓ FAQ
 
-| File | |
-|---|---|
-| `Run-GamingTweaks.cmd` | Double-click this to start (opens the window) |
-| `Run-GamingTweaks-Console.cmd` | Text-menu version |
-| `GamingTweaks.ps1` | The script itself |
-| `README.txt` | Offline copy of this guide |
-| `legacy/Windows11.bat` | The original 2024 script, kept for reference — **not recommended**, see [CHANGELOG](CHANGELOG.md) |
+<details>
+<summary><b>Will it break the Microsoft Store, Xbox or Game Pass?</b></summary>
+<br/>No. Keeping them working is a core rule — the services, apps and sign-in they need are never touched. Windows Update is paused, not disabled, because the Store relies on it.
+</details>
+
+<details>
+<summary><b>Can it get me banned by anti-cheat?</b></summary>
+<br/>GamingTweaks only changes Windows settings — it never touches game files or game memory. By default nothing affects anti-cheat. The optional <b>Core Isolation off</b> extra can make FACEIT or Vanguard ask for it to be turned back on; press <b>Revert</b> if that happens.
+</details>
+
+<details>
+<summary><b>Why does Windows Security warn about it?</b></summary>
+<br/>The script contains the optional "Defender off" code, which some antivirus rules flag. That part only runs if you tick it. The code is all readable in <code>GamingTweaks.ps1</code>, and each release is built by GitHub Actions from this repository.
+</details>
+
+<details>
+<summary><b>How much FPS will I gain?</b></summary>
+<br/>Honestly: expect smoother frame times, better 1% lows and fewer stutters more than a big jump in average FPS — typically a few percent, more with Core Isolation off. Measure it yourself with <a href="https://www.capframex.com/">CapFrameX</a> before and after.
+</details>
+
+<details>
+<summary><b>Do I need a fresh Windows install?</b></summary>
+<br/>No — it works on your current install. On a fresh install, run Windows Update and update your Store apps first, then install drivers and games, then run GamingTweaks.
+</details>
+
+<details>
+<summary><b>How do I undo it?</b></summary>
+<br/>Click <b>Revert everything</b> in the window (or press <b>R</b> in the text menu) and reboot. Removed bloat apps can be reinstalled from the Microsoft Store.
+</details>
+
+---
+
+## 🤝 Contributing & support
+
+- 🐞 **Found a bug?** [Open an issue](https://github.com/FiTH-g1gGLe/GamingTweaks/issues/new/choose) and attach the log from `C:\GamingTweaks`
+- 💡 **Have an idea?** [Suggest a feature](https://github.com/FiTH-g1gGLe/GamingTweaks/issues/new/choose)
+- 🔐 **Security issue?** See [SECURITY.md](.github/SECURITY.md)
+- 🛠️ **Want to help?** Read [CONTRIBUTING.md](.github/CONTRIBUTING.md)
 
 <div align="center">
 
-*Built from the best parts of WinUtil, Atlas, ReviOS, FR33THY's Ultimate, UnLovedCookie's Network,
-GTweak, privacy.sexy, Sparkle and shoober420's scripts — reviewed line by line, risky parts removed.*
+<br/>
 
-**Use at your own risk. Make a backup before tweaking any PC.**
+### ⭐ If GamingTweaks helped your PC, a star helps others find it.
+
+<br/>
+
+<sub>Released under the [MIT License](LICENSE) · Use at your own risk — a restore point and full backup are made, but no tweak tool can know every PC.<br/>
+Ideas reviewed from WinUtil, Atlas, ReviOS, optimizerDuck, privacy.sexy, Sparkle, GTweak and others — rewritten, with the risky parts left out.</sub>
 
 </div>

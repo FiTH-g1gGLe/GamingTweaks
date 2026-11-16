@@ -1,0 +1,41 @@
+name: Bug report
+description: Something didn't work or caused a problem
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! The details below help fix it quickly. You can undo everything any time with **Revert everything**.
+  - type: input
+    id: version
+    attributes:
+      label: GamingTweaks version
+      description: Shown in the window title, e.g. v1.8.0
+    validations:
+      required: true
+  - type: input
+    id: pc
+    attributes:
+      label: Windows version, CPU and GPU
+      description: The **PC info** button shows all of this
+      placeholder: Windows 11 25H2, Ryzen 7 9800X3D, RTX 5080
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Which version did you use?
+      options: [Window (GUI), Text menu]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you clicked or pressed, what you expected, and what happened instead. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log file
+      description: Drag in the newest `log-*.txt` from `C:\GamingTweaks`
