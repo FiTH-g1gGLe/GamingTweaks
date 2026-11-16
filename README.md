@@ -7,7 +7,7 @@
 A Windows 10/11 gaming optimisation script that adapts to your PC, keeps the Microsoft Store,
 Xbox and anti-cheat working, and can put everything back exactly as it was.
 
-`v1.7.0` · PowerShell · Windows 10 / 11 · Window or text menu
+`v1.8.0` · PowerShell · Windows 10 / 11 · Window or text menu
 
 </div>
 

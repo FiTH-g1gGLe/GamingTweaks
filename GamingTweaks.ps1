@@ -28,7 +28,7 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     exit
 }
 
-$Version = '1.7.0'
+$Version = '1.8.0'
 $ErrorActionPreference = 'Continue'
 $ProgressPreference    = 'SilentlyContinue'
 $Host.UI.RawUI.WindowTitle = "GamingTweaks v$Version"
@@ -330,7 +330,14 @@ function Invoke-Gaming {
     Set-Reg 'HKCU\Control Panel\Desktop' 'MenuShowDelay' '0' 'String'
     Set-Reg 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' 'EnableTransparency' 0
     Set-Reg 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'TaskbarAnimations' 0
-    Write-Ok 'Transparency + taskbar animations off, menus instant'
+    Set-Reg 'HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' 'ListviewShadow' 0
+    Set-Reg 'HKCU\Software\Microsoft\Windows\DWM' 'EnableAeroPeek' 0
+    Write-Ok 'Transparency, taskbar animations, Aero Peek + icon shadows off, menus instant'
+
+    # Key repeat starts straight away at full speed (from optimizerDuck)
+    Set-Reg 'HKCU\Control Panel\Keyboard' 'KeyboardDelay' '0' 'String'
+    Set-Reg 'HKCU\Control Panel\Keyboard' 'KeyboardSpeed' '31' 'String'
+    Write-Ok 'Keyboard repeat delay shortest, repeat rate fastest'
 
     # Memory compression off only when there is plenty of RAM
     if ($RamGB -ge 16) {
@@ -410,6 +417,21 @@ function Invoke-Background {
                    '\Microsoft\Office\OfficeTelemetryAgentFallBack2016') { Disable-Task $t }
     Write-Ok 'Telemetry + error reporting off'
 
+    # More telemetry policies + background ETW trace loggers (from optimizerDuck)
+    $dc = 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+    Set-Reg $dc 'AllowCommercialDataPipeline' 0
+    Set-Reg $dc 'AllowDeviceNameInTelemetry' 0
+    Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat' 'DisableInventory' 1
+    Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat' 'AITEnable' 0
+    Set-Reg 'HKCU\SOFTWARE\Policies\Microsoft\Assistance\Client\1.0' 'NoExplicitFeedback' 1
+    Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Assistance\Client\1.0' 'NoActiveHelp' 1
+    $al = 'HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger'
+    foreach ($l in 'Diagtrack-Listener', 'SQMLogger', 'AppModel', 'Cellcore', 'CloudExperienceHostOobe', 'DataMarket',
+                   'DiagLog', 'LwtNetLog', 'WdiContextLog', 'WiFiSession') {
+        if (Test-Path -LiteralPath (Get-RegPsPath "$al\$l")) { Set-Reg "$al\$l" 'Start' 0 }
+    }
+    Write-Ok 'Inventory collector, device name in telemetry + 10 background trace loggers off'
+
     # Activity history, advertising ID, tailored experiences
     $sys = 'HKLM\SOFTWARE\Policies\Microsoft\Windows\System'
     Set-Reg $sys 'EnableActivityFeed' 0
@@ -441,7 +463,18 @@ function Invoke-Background {
     Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'DisableAIDataAnalysis' 1
     Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'AllowRecallEnablement' 0
     Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Dsh' 'AllowNewsAndInterests' 0
-    Write-Ok 'Copilot, Recall, Widgets off'
+    Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'TurnOffSavingSnapshots' 1
+    Set-Reg 'HKCU\Software\Policies\Microsoft\Windows\WindowsAI' 'TurnOffSavingSnapshots' 1
+    Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI' 'DisableClickToDo' 1
+    Set-Reg 'HKCU\Software\Policies\Microsoft\Windows\WindowsAI' 'DisableClickToDo' 1
+    Write-Ok 'Copilot, Recall (incl. snapshots), Click to Do, Widgets off'
+
+    # Leftover ads and nags (from optimizerDuck)
+    Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent' 'DisableConsumerAccountStateContent' 1
+    Set-Reg 'HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer' 'HideRecommendedSection' 1
+    Set-Reg 'HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' 'HideSCAMeetNow' 1
+    Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\FindMyDevice' 'AllowFindMyDevice' 0
+    Write-Ok 'Microsoft 365 ads in Settings, Start "Recommended" section, Meet Now, Find My Device off'
 
     # Background apps (UWP apps not running when closed)
     Set-Reg 'HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications' 'GlobalUserDisabled' 1
@@ -974,6 +1007,10 @@ function Invoke-Services {
         $done = @()
         foreach ($e in $off.GetEnumerator()) { if (Set-SvcAll $e.Key 4) { $done += $e.Value } }
         Write-Ok ('Disabled: ' + (@($done | Where-Object { $_ }) -join ', '))
+        # Geolocation service is off, so switch location off cleanly too (from optimizerDuck)
+        Set-Reg 'HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors' 'DisableLocation' 1
+        Set-Reg 'HKLM\SYSTEM\Maps' 'AutoUpdateEnabled' 0
+        Write-Ok 'Location off, offline maps auto-update off'
 
         if (-not (Confirm-Yes 'Do you sign in with a fingerprint reader or face camera (Windows Hello)? (a PIN is fine either way)' 'Hello')) {
             if (Set-SvcAll 'WbioSrvc' 4) { Write-Ok 'Disabled: Windows Biometric Service' }
@@ -1408,7 +1445,7 @@ function Install-CatalogApp($App) {
     elseif ($WgAlready -contains $code) { Write-Skip "$($App.Name) is already installed and up to date" }
     elseif ($code -eq $WgNotFound)   { Write-Warn2 "$($App.Name): winget could not find $($App.Id)" }
     else {
-        $last = @($out | ForEach-Object { "$_".Trim() } | Where-Object { $_ -and $_ -notmatch '^[\s\-\\|/]+$|[▀-▟]' }) | Select-Object -Last 1
+        $last = @($out | ForEach-Object { "$_".Trim() } | Where-Object { $_ -and $_ -notmatch '^[\s\-\\|/]+$|[\u2580-\u259F]' }) | Select-Object -Last 1
         Write-Warn2 "$($App.Name) failed (code $code) $last"
     }
 }
