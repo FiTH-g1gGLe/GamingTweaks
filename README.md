@@ -131,7 +131,7 @@ Double-click **`Run-GamingTweaks-Console.cmd`** (or run `Run-GamingTweaks.cmd -C
 
 ## 🔒 Built to be trusted
 
-| | |
+| Promise | How |
 |---|---|
 | 📖 **Readable, not compiled** | One plain PowerShell script — no `.exe`, no installer, no hidden code. Read every line before you run it. |
 | 💾 **Backup before every change** | Original values go to `C:\GamingTweaks\backup.json` first; a System Restore point is made too. |
