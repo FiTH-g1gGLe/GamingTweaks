@@ -1,6 +1,6 @@
 
    ==================================================================
-                         G A M I N G T W E A K S   v1.7.0
+                         G A M I N G T W E A K S   v1.8.0
          One menu. Every change backed up. One key to undo it all.
    ==================================================================
 

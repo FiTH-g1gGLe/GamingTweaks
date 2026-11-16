@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.8.0
+Ideas taken from [optimizerDuck](https://github.com/itsfatduck/optimizerDuck), reviewed and rewritten for GamingTweaks:
+- **Background & privacy:** 10 background ETW trace loggers off (Diagtrack-Listener, SQMLogger and more), app inventory collector off, device name left out of telemetry, Help "feedback" prompts off
+- **AI:** Recall snapshot saving and Click to Do off
+- **Ads and nags:** Microsoft 365 ads in Settings, Start menu *Recommended* section, Meet Now and Find My Device off
+- **Gaming & input:** shortest keyboard repeat delay / fastest repeat rate; Aero Peek and desktop icon shadows off
+- **Aggressive services:** location turned off properly alongside the Geolocation service
+- **Fix:** the app installer's progress-bar filter used special characters that Windows PowerShell 5.1 could misread; replaced with plain-text escapes
+
 ## v1.7.0
 - **Install apps** gains four new sections:
   - Game launchers: Steam, Epic Games, EA app, Ubisoft Connect, Battle.net, GOG GALAXY
